@@ -58,6 +58,13 @@ class MedicationController extends Controller
      * @param  mixed $request
      * @return void
      */
+
+    /**
+     * @LRDparam customer_id required string
+     * @LRDparam name required string
+     * @LRDparam description required string
+     * @LRDparam quantity required integer
+     */
     public function create(Request $request)
     {
         $rules = [
@@ -94,6 +101,13 @@ class MedicationController extends Controller
      * @param  mixed $request
      * @param  mixed $medicationId
      * @return void
+     */
+
+    /**
+     * @LRDparam customer_id required string
+     * @LRDparam name required string
+     * @LRDparam description required string
+     * @LRDparam quantity required integer
      */
     public function update(Request $request, $medicationId)
     {
@@ -137,6 +151,7 @@ class MedicationController extends Controller
      * @param  mixed $medication
      * @return void
      */
+
     public function destroy($medicationId)
     {
         try {

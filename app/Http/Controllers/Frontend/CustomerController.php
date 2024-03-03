@@ -58,6 +58,12 @@ class CustomerController extends Controller
      * @param  mixed $request
      * @return void
      */
+
+    /**
+     * @LRDparam name required string
+     * @LRDparam address required string
+     * @LRDparam phone required string
+     */
     public function create(Request $request)
     {
         $rules = [
@@ -93,6 +99,12 @@ class CustomerController extends Controller
      * @param  mixed $request
      * @param  mixed $customerId
      * @return void
+     */
+
+    /**
+     * @LRDparam name required string
+     * @LRDparam address required string
+     * @LRDparam phone required string
      */
     public function update(Request $request, $customerId)
     {
@@ -135,7 +147,7 @@ class CustomerController extends Controller
      * @param  mixed $customerId
      * @return void
      */
-    public function destroy ($customerId)
+    public function destroy($customerId)
     {
         try {
             $customer = $this->customerRepository->find($customerId);
@@ -150,7 +162,7 @@ class CustomerController extends Controller
                 $customer->forceDelete();
 
                 Log::info("CustomerController (destroy) : customer deleted | user_id : {$user->id} | medication_id: {$customerId}");
-                
+
                 return $this->apiSuccess("customer deleted successfuly");
             }
 
@@ -159,7 +171,6 @@ class CustomerController extends Controller
             Log::info("CustomerController (destroy) : customer deleted | user_id : {$user->id} | medication_id: {$customerId}");
 
             return $this->apiSuccess("customer deleted successfuly");
-
         } catch (Throwable $th) {
             return $this->apiError("something went wrong");
         }
