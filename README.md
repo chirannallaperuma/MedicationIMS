@@ -5,7 +5,7 @@
 - composer install
  
 
-- Copy .env file  for configurations
+**Copy .env file  for configurations**
 
 
 - cp .env.example .env
