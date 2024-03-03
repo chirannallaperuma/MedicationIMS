@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    
+
     protected $fillable = [
         'name',
         'user_name',
@@ -28,4 +28,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * hasAnyRole
+     *
+     * @param  mixed $roles
+     * @return void
+     */
+    public function hasAnyRole($roles)
+    {
+        if (!is_array($roles)) {
+            $roles = [$roles];
+        }
+
+        return in_array($this->role, $roles);
+    }
 }

@@ -20,7 +20,10 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('register', [\App\Http\Controllers\Frontend\FrontuserAuthController::class, 'register']);
     Route::post('login', [\App\Http\Controllers\Frontend\FrontuserAuthController::class, 'login']);
 
-    Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-        return $request->user();
+    Route::group(['middleware' => ['auth:sanctum', 'role:owner,manager,cashier']], function () {
+        Route::post('customers', [\App\Http\Controllers\Frontend\CustomerController::class, 'create']);
+        Route::get('customers', [\App\Http\Controllers\Frontend\CustomerController::class, 'index']);
+        Route::put('customers/{id}', [\App\Http\Controllers\Frontend\CustomerController::class, 'update']);
+        Route::delete('customers/{id}', [\App\Http\Controllers\Frontend\CustomerController::class, 'destroy']);
     });
 });
