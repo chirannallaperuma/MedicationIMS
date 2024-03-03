@@ -60,7 +60,11 @@ class BaseRepository
      */
     public function update($id, array $newDetails)
     {
-        return  $this->model->find($id)->update($newDetails);
+        $data = $this->model->find($id);
+
+        $data->update($newDetails);
+
+        return $data;
     }
 
     /**
