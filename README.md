@@ -26,3 +26,7 @@
 
 
 - php artisan serve
+
+
+**api doc**
+- http://localhost:8000/request-docs
