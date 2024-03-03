@@ -149,10 +149,14 @@ class CustomerController extends Controller
             if ($user->role == 'owner') {
                 $customer->forceDelete();
 
+                Log::info("CustomerController (destroy) : customer deleted | user_id : {$user->id} | medication_id: {$customerId}");
+                
                 return $this->apiSuccess("customer deleted successfuly");
             }
 
             $customer->delete();
+
+            Log::info("CustomerController (destroy) : customer deleted | user_id : {$user->id} | medication_id: {$customerId}");
 
             return $this->apiSuccess("customer deleted successfuly");
 
